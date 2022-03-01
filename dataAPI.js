@@ -24,3 +24,5 @@ var extension = path.extname(filename);
 console.log("The file " + filename + " was requested.");
 next();
 });
+const geoJSON = require('./routes/geoJSON');
+app.use('/', geoJSON); 
