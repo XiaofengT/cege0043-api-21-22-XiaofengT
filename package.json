@@ -1,0 +1,24 @@
+{
+  "name": "cege0043-api-21-22-xiaofengt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dataAPI.js",
+  "dependencies": {
+    "express": "^4.17.3",
+    "pg": "^8.7.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/ucl-geospatial-21-22/cege0043-api-21-22-XiaofengT.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ucl-geospatial-21-22/cege0043-api-21-22-XiaofengT/issues"
+  },
+  "homepage": "https://github.com/ucl-geospatial-21-22/cege0043-api-21-22-XiaofengT#readme"
+}
