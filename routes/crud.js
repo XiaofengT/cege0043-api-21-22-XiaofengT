@@ -23,3 +23,13 @@ var os = require('os');
  
 const bodyParser = require('body-parser');
 crud.use(bodyParser.urlencoded({ extended: true })); 
+
+// test endpoint for GET requests (can be called from a browser URL or AJAX)
+ crud.get('/testCRUD',function (req,res) {
+ res.json({message:req.originalUrl+" " +"GET REQUEST"});
+ });
+
+ // test endpoint for POST requests - can only be called from AJAX
+ crud.post('/testCRUD',function (req,res) {
+ res.json({message:req.body});
+ });
