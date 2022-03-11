@@ -20,3 +20,6 @@ var os = require('os');
  }
  var pool = new pg.Pool(config);
  console.log(config); 
+ 
+const bodyParser = require('body-parser');
+crud.use(bodyParser.urlencoded({ extended: true })); 
