@@ -26,3 +26,5 @@ next();
 });
 const geoJSON = require('./routes/geoJSON');
 app.use('/', geoJSON); 
+const crud = require('./routes/crud');
+app.use('/', crud); 
