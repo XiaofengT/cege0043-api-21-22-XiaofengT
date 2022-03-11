@@ -33,3 +33,5 @@ crud.use(bodyParser.urlencoded({ extended: true }));
  crud.post('/testCRUD',function (req,res) {
  res.json({message:req.body});
  });
+ 
+ module.exports = crud;
