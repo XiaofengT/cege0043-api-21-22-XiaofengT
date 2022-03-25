@@ -5,6 +5,7 @@
   "main": "dataAPI.js",
   "dependencies": {
     "express": "^4.17.3",
+    "fs": "0.0.1-security",
     "pg": "^8.7.3"
   },
   "devDependencies": {},
