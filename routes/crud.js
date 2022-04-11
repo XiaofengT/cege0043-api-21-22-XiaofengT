@@ -25,23 +25,23 @@ const bodyParser = require('body-parser');
 crud.use(bodyParser.urlencoded({ extended: true })); 
 
 var userID;
-crud.get('/getUserID', function (req, res) {
+crud.get('/getUserId', function (req, res) {
 	pool.connect(function(err,client,done) {
 		if(err){
 			console.log("not able to get connection "+ err);
 			res.status(400).send(err);
 		}
-		var queryString = 'SELECT user_id FROM ucfscde.users where user_name = current_user;';
+		var queryString = 'select user_id from ucfscde.users where user_name = current_user;';
 		
-		client.query(queryString, function (req, res) {
+		client.query(queryString, function (err, result) {
 			done();
 			if(err){
 				console.log(err);
 				res.status(400).send(err);
 			}
 			res.status(400).send(result.rows[0]);
-			var user_id = JSON.stringify(result.row[0]);
-			user_id = user_id.substring(11, user_id.length -1);
+			var user_id = JSON.stringify(result.rows[0]);
+			user_id = user_id.substring(11, user_id.length - 1);
 			userID = Number(user_id);
 			console.log(userID);
 		});
