@@ -24,7 +24,31 @@ var os = require('os');
 const bodyParser = require('body-parser');
 crud.use(bodyParser.urlencoded({ extended: true })); 
 
-// test endpoint for GET requests (can be called from a browser URL or AJAX)
+var userID;
+crud.get('/getUserID', function (req, res) {
+	pool.connect(function(err,client,done) {
+		if(err){
+			console.log("not able to get connection "+ err);
+			res.status(400).send(err);
+		}
+		var queryString = 'SELECT user_id FROM ucfscde.users where user_name = current_user;';
+		
+		client.query(queryString, function (req, res) {
+			done();
+			if(err){
+				console.log(err);
+				res.status(400).send(err);
+			}
+			res.status(400).send(result.rows[0]);
+			var user_id = JSON.stringify(result.row[0]);
+			user_id = user_id.substring(11, user_id.length -1);
+			userID = Number(user_id);
+			console.log(userID);
+		});
+	});
+});
+
+ // test endpoint for GET requests (can be called from a browser URL or AJAX)
  crud.get('/testCRUD',function (req,res) {
  res.json({message:req.originalUrl+" " +"GET REQUEST"});
  });
@@ -33,5 +57,7 @@ crud.use(bodyParser.urlencoded({ extended: true }));
  crud.post('/testCRUD',function (req,res) {
  res.json({message:req.body});
  });
+
+
  
  module.exports = crud;
