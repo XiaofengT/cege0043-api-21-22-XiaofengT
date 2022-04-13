@@ -45,7 +45,6 @@ crud.get('/getUserId', function (req, res) {
 			userID = Number(user_id);
 			console.log(userID);
 		});
-		res.json({message:req.originalUrl+" " +"GET REQUEST"});
 	});
 });
 
