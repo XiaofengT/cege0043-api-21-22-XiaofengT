@@ -76,6 +76,7 @@ crud.post('/insertAssetPoint', function(req, res) {
 	});
 });
 
+
  // test endpoint for GET requests (can be called from a browser URL or AJAX)
  crud.get('/testCRUD',function (req,res) {
  res.json({message:req.originalUrl+" " +"GET REQUEST"});
