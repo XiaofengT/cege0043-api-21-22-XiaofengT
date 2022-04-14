@@ -102,5 +102,27 @@ crud.post('/insertConditionInformation', function(req, res) {
 	});
 });
 
+
+crud.post('/deleteAsset', (req, res) => {
+	pool.connect(function(err, client, done) {
+		if(err){
+			console.log("not able to get connection "+ err);
+			res.status(400).send(err);
+		}
+		
+		var asset_id = req.body.asset_id;
+		
+		var querystring = "DELETE from cege0043.asset_information where id = $1";
+		
+		client.query(querystring, [asset_id], function (err, result) {
+			done();
+			if(err){
+				console.log(err);
+				res.status(400).send(err);
+			}
+			res.status(200).send("If this record is yours, then asset ID "+ asset_id+ " has been deleted.  If you did not insert this record, then no change has been made");
+		});
+	});
+});
  
  module.exports = crud;
