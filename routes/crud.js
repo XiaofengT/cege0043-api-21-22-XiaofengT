@@ -48,5 +48,34 @@ crud.get('/getUserId', function (req, res) {
 	});
 });
 
+
+crud.post('/insertAssetPoint', function(req, res) {
+	pool.connect(function(err, client, done) {
+		if(err){
+			console.log("not able to get connection "+ err);
+			res.status(400).send(err);
+		}
+		
+		var longitude = req.body.longitude;
+		var latitude = req.body.latitude;
+		var asset_name = req.body.asset_name;
+		var installation_date = req.body.installation_date;
+		
+		var geometrystring = "st_geomfromtext('POINT("+req.body.longitude+ " "+req.body.latitude +")',4326)";
+		var querystring = "INSERT into cege0043.asset_information (asset_name,installation_date, location) values ";
+		querystring += "($1,$2,";
+		querystring += geometrystring + ")";
+		
+		client.query(querystring, [asset_name, installation_date], function (err, result) {
+			done();
+			if(err){
+				console.log(err);
+				res.status(400).send(err);
+			}
+			res.status(200).send("Form Data" + req.body.asset_name + " has been inserted");
+		});
+	});
+});
+
  
  module.exports = crud;
