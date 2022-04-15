@@ -152,4 +152,29 @@ geoJSON.get('/dailyParticipationRates', function (req,res) {
 });
 
 
+geoJSON.get('/assetsAddedWithinLastWeek', function (req,res) {
+	pool.connect(function(err, client, done) {
+		if(err){
+		   console.log("not able to get connection "+ err);
+		   res.status(400).send(err);
+	   }
+	   
+	   var querystring = "SELECT 'FeatureCollection' As type, array_to_json(array_agg(f)) As features  FROM ";
+	   querystring += "(SELECT 'Feature' As type     , ST_AsGeoJSON(lg.location)::json As geometry, ";
+	   querystring += "row_to_json((SELECT l FROM (SELECT id, asset_name, installation_date) As l )) As properties ";
+	   querystring += "FROM cege0043.asset_information  As lg";
+	   querystring += " where timestamp > NOW()::DATE-EXTRACT(DOW FROM NOW())::INTEGER-7  limit 100  ) As f ";
+	   
+	   client.query(querystring, function(err,result){
+		   done();
+		   if(err){
+			   console.log(err);
+			   res.status(400).send(err);
+		   }
+		   res.status(200).send(result.rows);
+	   });
+	});
+});
+
+
 module.exports = geoJSON; 
