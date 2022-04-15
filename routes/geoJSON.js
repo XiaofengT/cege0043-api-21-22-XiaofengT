@@ -270,4 +270,29 @@ geoJSON.get('/conditionReportMissing/:user_id', function (req,res) {
 });
 
 
+geoJSON.get('/topFiveScorers', function (req,res) {
+	pool.connect(function(err, client, done) {
+		if(err){
+		   console.log("not able to get connection "+ err);
+		   res.status(400).send(err);
+	   }
+	   
+	   var querystring = "select array_to_json (array_agg(c)) from ";
+	   querystring += "(select rank() over (order by num_reports desc) as rank , user_id ";
+	   querystring += "from (select COUNT(*) AS num_reports, user_id ";
+	   querystring += "from cege0043.asset_condition_information ";
+	   querystring += "group by user_id) b limit 5) c;";
+	   
+	   client.query(querystring, function(err,result){
+		   done();
+		   if(err){
+			   console.log(err);
+			   res.status(400).send(err);
+		   }
+		   res.status(200).send(result.rows);
+	   });
+	});
+});
+
+
 module.exports = geoJSON; 
