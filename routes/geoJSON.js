@@ -128,4 +128,28 @@ geoJSON.get('/assetsInGreatCondition', function (req,res) {
 });
 
 
+geoJSON.get('/dailyParticipationRates', function (req,res) {
+	pool.connect(function(err, client, done) {
+		if(err){
+		   console.log("not able to get connection "+ err);
+		   res.status(400).send(err);
+	   }
+	   
+	   var querystring = "select array_to_json (array_agg(c)) from ";
+	   querystring += "(select day, sum(reports_submitted) as reports_submitted, sum(not_working) as reports_not_working ";
+	   querystring += "from cege0043.report_summary ";
+	   querystring += "group by day) c ";
+	   
+	   client.query(querystring, function(err,result){
+		   done();
+		   if(err){
+			   console.log(err);
+			   res.status(400).send(err);
+		   }
+		   res.status(200).send(result.rows);
+	   });
+	});
+});
+
+
 module.exports = geoJSON; 
