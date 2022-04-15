@@ -101,4 +101,31 @@ geoJSON.get('/userRanking/:user_id', function (req,res) {
 });
 
 
+geoJSON.get('/assetsInGreatCondition', function (req,res) {
+	pool.connect(function(err, client, done) {
+		if(err){
+		   console.log("not able to get connection "+ err);
+		   res.status(400).send(err);
+	   }
+	   
+	   var querystring = "select array_to_json (array_agg(d)) from ";
+	   querystring += "(select c.* from cege0043.asset_information c inner join ";
+	   querystring += "(select count(*) as best_condition, asset_id from cege0043.asset_condition_information where ";
+	   querystring += "condition_id in (select id from cege0043.asset_condition_options where condition_description like '%very good%') ";
+	   querystring += "group by asset_id ";
+	   querystring += "order by best_condition desc) b ";
+	   querystring += "on b.asset_id = c.id) d;";
+	   
+	   client.query(querystring, function(err,result){
+		   done();
+		   if(err){
+			   console.log(err);
+			   res.status(400).send(err);
+		   }
+		   res.status(200).send(result.rows);
+	   });
+	});
+});
+
+
 module.exports = geoJSON; 
