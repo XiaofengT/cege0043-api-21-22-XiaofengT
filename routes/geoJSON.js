@@ -209,4 +209,34 @@ geoJSON.get('/fiveClosestAssets/:latitude/:longitude', function (req,res) {
 });
 
 
+geoJSON.get('/lastFiveConditionReports/:user_id', function (req,res) {
+	pool.connect(function(err, client, done) {
+		if(err){
+		   console.log("not able to get connection "+ err);
+		   res.status(400).send(err);
+	   }
+	   
+	   var user_id = req.params.user_id;
+	   
+	   var querystring = "SELECT 'FeatureCollection' As type, array_to_json(array_agg(f)) As features  FROM ";
+	   querystring += "(SELECT 'Feature' As type     , ST_AsGeoJSON(lg.location)::json As geometry, ";
+	   querystring += "row_to_json((SELECT l FROM (SELECT id,user_id, asset_name, condition_description) As l ";
+	   querystring += " )) As properties FROM ";
+	   querystring += "(select * from cege0043.condition_reports_with_text_descriptions ";
+	   querystring += "where user_id = $1 ";
+	   querystring += "order by timestamp desc ";
+	   querystring += "limit 5) as lg) As f";
+	   
+	   client.query(querystring, [user_id], function(err,result){
+		   done();
+		   if(err){
+			   console.log(err);
+			   res.status(400).send(err);
+		   }
+		   res.status(200).send(result.rows);
+	   });
+	});
+});
+
+
 module.exports = geoJSON; 
