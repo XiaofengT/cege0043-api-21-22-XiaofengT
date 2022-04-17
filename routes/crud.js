@@ -62,7 +62,7 @@ crud.post('/insertAssetPoint', function(req, res) {
 			if(err){
 				res.status(400).send(err);
 			}
-			res.status(200).send("Form Asset" + req.body.asset_name + " has been inserted");
+			res.json({message:req.body});
 		});
 	});
 });
@@ -85,7 +85,7 @@ crud.post('/insertConditionInformation', function(req, res) {
 			if(err){
 				res.status(400).send(err);
 			}
-			res.status(200).send("The condition of Asset" + req.body.asset_name + " has been inserted");
+			res.json({message:req.body});
 		});
 	});
 });
@@ -106,7 +106,7 @@ crud.post('/deleteAsset', (req, res) => {
 			if(err){
 				res.status(400).send(err);
 			}
-			res.status(200).send("If this record is yours, then asset ID "+ asset_id+ " has been deleted.  If you did not insert this record, then no change has been made");
+			res.json({message:req.body});
 		});
 	});
 });
@@ -127,7 +127,7 @@ crud.post('/deleteConditionReport', (req, res) => {
 			if(err){
 				res.status(400).send(err);
 			}
-			res.status(200).send("If this record is yours, then condition ID "+ id+ " has been deleted.  If you did not insert this record, then no change has been made");
+			res.json({message:req.body});
 		});
 	});
 });
