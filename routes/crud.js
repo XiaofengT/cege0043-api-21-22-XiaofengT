@@ -40,10 +40,6 @@ crud.get('/getUserId', function (req, res) {
 				res.status(400).send(err);
 			}
 			res.status(200).send(result.rows[0]);
-			var user_id = JSON.stringify(result.rows[0]);
-			user_id = user_id.substring(11, user_id.length - 1);
-			userID = Number(user_id);
-			console.log(userID);
 		});
 	});
 });
