@@ -7,7 +7,6 @@ var fs = require('fs');
 var os = require('os');
  const userInfo = os.userInfo();
  const username = userInfo.username;
- console.log(username);
  // locate the database login details
  var configtext = ""+fs.readFileSync("/home/"+username+"/certs/postGISConnection.js");
  
@@ -19,7 +18,6 @@ var os = require('os');
 	 config[split[0].trim()] = split[1].trim();
  }
  var pool = new pg.Pool(config);
- console.log(config); 
  
 const bodyParser = require('body-parser');
 crud.use(bodyParser.urlencoded({ extended: true })); 
@@ -28,7 +26,6 @@ var userID;
 crud.get('/getUserId', function (req, res) {
 	pool.connect(function(err,client,done) {
 		if(err){
-			console.log("not able to get connection "+ err);
 			res.status(400).send(err);
 		}
 		var queryString = 'select user_id from ucfscde.users where user_name = current_user;';
@@ -36,14 +33,9 @@ crud.get('/getUserId', function (req, res) {
 		client.query(queryString, function (err, result) {
 			done();
 			if(err){
-				console.log(err);
 				res.status(400).send(err);
 			}
 			res.status(200).send(result.rows[0]);
-			var user_id = JSON.stringify(result.rows[0]);
-			user_id = user_id.substring(11, user_id.length - 1);
-			userID = Number(user_id);
-			console.log(userID);
 		});
 	});
 });
@@ -52,7 +44,6 @@ crud.get('/getUserId', function (req, res) {
 crud.post('/insertAssetPoint', function(req, res) {
 	pool.connect(function(err, client, done) {
 		if(err){
-			console.log("not able to get connection "+ err);
 			res.status(400).send(err);
 		}
 		
@@ -69,7 +60,6 @@ crud.post('/insertAssetPoint', function(req, res) {
 		client.query(querystring, [asset_name, installation_date], function (err, result) {
 			done();
 			if(err){
-				console.log(err);
 				res.status(400).send(err);
 			}
 			res.status(200).send("Form Asset" + req.body.asset_name + " has been inserted");
@@ -81,7 +71,6 @@ crud.post('/insertAssetPoint', function(req, res) {
 crud.post('/insertConditionInformation', function(req, res) {
 	pool.connect(function(err, client, done) {
 		if(err){
-			console.log("not able to get connection "+ err);
 			res.status(400).send(err);
 		}
 		
@@ -94,7 +83,6 @@ crud.post('/insertConditionInformation', function(req, res) {
 		client.query(querystring, [asset_name, condition_description], function (err, result) {
 			done();
 			if(err){
-				console.log(err);
 				res.status(400).send(err);
 			}
 			res.status(200).send("The condition of Asset" + req.body.asset_name + " has been inserted");
@@ -106,7 +94,6 @@ crud.post('/insertConditionInformation', function(req, res) {
 crud.post('/deleteAsset', (req, res) => {
 	pool.connect(function(err, client, done) {
 		if(err){
-			console.log("not able to get connection "+ err);
 			res.status(400).send(err);
 		}
 		
@@ -117,7 +104,6 @@ crud.post('/deleteAsset', (req, res) => {
 		client.query(querystring, [asset_id], function (err, result) {
 			done();
 			if(err){
-				console.log(err);
 				res.status(400).send(err);
 			}
 			res.status(200).send("If this record is yours, then asset ID "+ asset_id+ " has been deleted.  If you did not insert this record, then no change has been made");
@@ -129,7 +115,6 @@ crud.post('/deleteAsset', (req, res) => {
 crud.post('/deleteConditionReport', (req, res) => {
 	pool.connect(function(err, client, done) {
 		if(err){
-			console.log("not able to get connection "+ err);
 			res.status(400).send(err);
 		}
 		
@@ -140,7 +125,6 @@ crud.post('/deleteConditionReport', (req, res) => {
 		client.query(querystring, [id], function (err, result) {
 			done();
 			if(err){
-				console.log(err);
 				res.status(400).send(err);
 			}
 			res.status(200).send("If this record is yours, then condition ID "+ id+ " has been deleted.  If you did not insert this record, then no change has been made");
