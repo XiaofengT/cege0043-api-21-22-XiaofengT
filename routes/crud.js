@@ -97,11 +97,11 @@ crud.post('/deleteAsset', (req, res) => {
 			res.status(400).send(err);
 		}
 		
-		var asset_id = req.body.asset_id;
+		var id = req.body.id;
 		
 		var querystring = "DELETE from cege0043.asset_information where id = $1";
 		
-		client.query(querystring, [asset_id], function (err, result) {
+		client.query(querystring, [id], function (err, result) {
 			done();
 			if(err){
 				res.status(400).send(err);
