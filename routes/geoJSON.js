@@ -21,7 +21,7 @@ for (var i = 0; i < configarray.length; i++) {
 var pool = new pg.Pool(config);
 console.log(config);
 
-
+// set up endpoints
 geoJSON.get('/geoJSONUserId/:user_id', function (req,res) {
 	pool.connect(function(err, client, done) {
 		if(err){

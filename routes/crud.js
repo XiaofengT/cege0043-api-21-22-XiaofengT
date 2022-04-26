@@ -3,7 +3,6 @@ var pg = require('pg');
 var crud = require('express').Router();
 var fs = require('fs');
 
-
 var os = require('os');
  const userInfo = os.userInfo();
  const username = userInfo.username;
@@ -22,7 +21,7 @@ var os = require('os');
 const bodyParser = require('body-parser');
 crud.use(bodyParser.urlencoded({ extended: true })); 
 
-var userID;
+// set up endpoints
 crud.get('/getUserId', function (req, res) {
 	pool.connect(function(err,client,done) {
 		if(err){
