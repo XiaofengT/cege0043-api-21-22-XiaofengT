@@ -41,7 +41,7 @@ The files associated this asset managing api are located in the `cege0043-api-21
 	- crud.js: This .js file contains all the main endpoint of inserting and deleting the assets and conditions.
 		- Endpoint</br>
 |endpoint name|description|
-|--|--|
+|:----:|:----:|
 | /getUserId | Get the user_id of a user. This id is the numerical part of the databases login name. |
 | /insertAssetPoint | Insert the basic asset information to the database. |
 | /insertConditionInformation | Insert the condition information of an existing asset point to the database. |
@@ -50,7 +50,7 @@ The files associated this asset managing api are located in the `cege0043-api-21
 	- geoJSON.js: This .js file contains all the endpoints for querying geoJSON.
 		- Endpoint</br>
 		|endpoint name|description|
-		|--|--|
+		|:----:|:----:|
 		| /geoJSONUserId/:user_id | Returns the user geoJSON asset locations based on the user's user Id. |
 		|/userConditionReports/:user_id|User is told how many condition reports they have saved, when they add a new condition report.|
 		|/userRanking/:user_id|User is given their ranking (based on condition reports, in comparison to all other users).|
