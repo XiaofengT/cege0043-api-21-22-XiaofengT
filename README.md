@@ -48,6 +48,7 @@ The files associated this asset managing api are located in the `cege0043-api-21
 | /insertConditionInformation | Insert the condition information of an existing asset point to the database. |
 | /deleteAsset | Delete an existing asset point. |
 | /deleteConditionReport | Delete an existing condition report according to asset id. |
+	
 	- geoJSON.js: This .js file contains all the endpoints for querying geoJSON.
 		- Endpoint
 
