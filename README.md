@@ -12,8 +12,8 @@ A technical guide of assets managing app for both browser-based and mobile-based
 
 ## 1. System Requirements
 
-* In order to enable the full functionality of this app, a browser that supports geolocation access via http connection is required. Some browsers (such as Safari) block geolocation access via http connection. As a result, the app cannot locate and zoom into user positions if it is opened in those browsers. Therefore, it is recommended to use Chrome(Version 73.0.3683.75 or above) or Firefox(Version 65.0.2 or above) for this app.
-* This app requires to make connections to a Ubuntu Server (Virtual Machine). You could use BitVise, Pycharm (Version 2018.3.5 Professional Edition) or other SSH software to connect to the Ubuntu Server.
+* In order to enable the full functionality of this app, a browser that supports geolocation access via http connection is required. Some browsers (such as Safari) block geolocation access via http connection. As a result, the app cannot locate and zoom into user positions if it is opened in those browsers. Therefore, it is recommended to use [Chrome](https://www.google.com/chrome/)(Version 73.0.3683.75 or above) or [Firefox](https://www.mozilla.org/en-GB/firefox/)(Version 65.0.2 or above) for this app.
+* This app requires to make connections to a Ubuntu Server (Virtual Machine). You could use [BitVise](https://www.bitvise.com/), [Pycharm](https://www.jetbrains.com/pycharm/download/#section=mac) (Version 2018.3.5 Professional Edition) or other SSH software to connect to the Ubuntu Server.
 * If you are going to use this app outside the UCL campus (not connected to Eduroam), make sure you are connected to UCL VPN by following the instructions at https://www.ucl.ac.uk/isd/services/get-connected/remote-working-services/ucl-virtualprivate-network-vpn.
 
 ## 2. Deployment
@@ -73,6 +73,6 @@ The files associated this asset managing api are located in the `cege0043-api-21
 
 ## 5. Code reference
 
-- A large proportion of codes are adapted from the lab notes of CEGE 0043 Web Mobile and GIS by Calire Ellul, including
+- A large proportion of codes are adapted from the lab notes of [CEGE 0043 Web Mobile and GIS](https://moodle.ucl.ac.uk/course/view.php?id=1330) by Calire Ellul, including
 	- Basic structures of dataAPI.js, crud.js and geoJSON.js
 	- Functions related to add server, add cross-source query function, add request, SQL query statement, endpoint establishment
