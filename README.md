@@ -5,7 +5,10 @@ A technical guide of assets managing app for both browser-based and mobile-based
 ## Table of Contents
 
 1. System Requirements
-
+2. Deployment
+3. Testing
+4. File description
+5. Code reference
 
 ## 1. System Requirements
 
@@ -16,16 +19,18 @@ A technical guide of assets managing app for both browser-based and mobile-based
 ## 2. Deployment
 
 * Procedures to deploy this app:
-1. Clone the source code of this question setting app from Github to CEGE server at `home/studentuser/code` by typing in the command line (terminal) window for Ubuntu:</br>
-<pre><code>`cd /home/studentuser/code`
-`git clone https://github.com/ucl-geospatial-21-22/cege0043-api-21-22-XiaofengT.git`
+1. Clone the source code of this question setting app from Github to CEGE server at `home/studentuser/code` by typing in the command line (terminal) window for Ubuntu:
+<pre><code>cd /home/studentuser/code
+git clone https://github.com/ucl-geospatial-21-22/cege0043-api-21-22-XiaofengT.git
 </code></pre>
 3. Go to the uceslxw-server folder and start the Node JS server.
-`cd /home/studentuser/code/cege0043-api-21-22-XiaofengT`
-`pm2 start dataAPI.js`
+<pre><code>cd /home/studentuser/code/cege0043-api-21-22-XiaofengT
+pm2 start dataAPI.js
+</code></pre>
 4. Make sure the Node JS server is successfully started. If any error occurs, you could enter the debug mode through the command line window by typing: 
-`cd /home/studentuser/code/cege0043-api-21-22-XiaofengT`
-`node dataAPI.js`
+<pre><code>cd /home/studentuser/code/cege0043-api-21-22-XiaofengT
+node dataAPI.js
+</code></pre>
 
 ## 3. Testing
 
