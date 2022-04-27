@@ -16,9 +16,10 @@ A technical guide of assets managing app for both browser-based and mobile-based
 ## 2. Deployment
 
 * Procedures to deploy this app:
-1. Clone the source code of this question setting app from Github to CEGE server at `home/studentuser/code` by typing in the command line (terminal) window for Ubuntu:
-`cd /home/studentuser/code`
+1. Clone the source code of this question setting app from Github to CEGE server at `home/studentuser/code` by typing in the command line (terminal) window for Ubuntu:</br>
+<pre><code>`cd /home/studentuser/code`
 `git clone https://github.com/ucl-geospatial-21-22/cege0043-api-21-22-XiaofengT.git`
+</code></pre>
 3. Go to the uceslxw-server folder and start the Node JS server.
 `cd /home/studentuser/code/cege0043-api-21-22-XiaofengT`
 `pm2 start dataAPI.js`
@@ -52,18 +53,18 @@ The files associated this asset managing api are located in the `cege0043-api-21
 	- geoJSON.js: This .js file contains all the endpoints for querying geoJSON.
 		- Endpoint
 
-| endpoint name | description |
-|:----:|:----:|
-| /geoJSONUserId/:user_id | Returns the user geoJSON asset locations based on the user's user Id. |
-| /userConditionReports/:user_id | User is told how many condition reports they have saved, when they add a new condition report. |
-| /userRanking/:user_id | User is given their ranking (based on condition reports, in comparison to all other users). |
-| /assetsInGreatCondition | List of all the assets with at least one report saying that they are in the best condition. |
-| /dailyParticipationRates | Show daily reporting rates for the past week (how many reports have been submitted, and how many of these had condition as one of the two 'not working' options). |
-| /assetsAddedWithinLastWeek | Show all the asset locations added in the last week (by any user). |
-| /fiveClosestAssets/:latitude/:longitude | Show the 5 assets closest to the user’s current location, added by any user. |
-| /lastFiveConditionReports/:user_id | Show the last 5 reports that the user created. |
-| /conditionReportMissing/:user_id | Show the asset that user hasn’t already given a condition report for in the last 3 days. |
-| /topFiveScorers | Show top 5 scorers in terms of the number of reports created.|
+		| endpoint name | description |
+		|:----:|:----:|
+		| /geoJSONUserId/:user_id | Returns the user geoJSON asset locations based on the user's user Id. |
+		| /userConditionReports/:user_id | User is told how many condition reports they have saved, when they add a new condition report. |
+		| /userRanking/:user_id | User is given their ranking (based on condition reports, in comparison to all other users). |
+		| /assetsInGreatCondition | List of all the assets with at least one report saying that they are in the best condition. |
+		| /dailyParticipationRates | Show daily reporting rates for the past week (how many reports have been submitted, and how many of these had condition as one of the two 'not working' options). |
+		| /assetsAddedWithinLastWeek | Show all the asset locations added in the last week (by any user). |
+		| /fiveClosestAssets/:latitude/:longitude | Show the 5 assets closest to the user’s current location, added by any user. |
+		| /lastFiveConditionReports/:user_id | Show the last 5 reports that the user created. |
+		| /conditionReportMissing/:user_id | Show the asset that user hasn’t already given a condition report for in the last 3 days. |
+		| /topFiveScorers | Show top 5 scorers in terms of the number of reports created.|
 
 ## 5. Code reference
 
